@@ -234,4 +234,3 @@ class Report(TimeStampedModel):
 
     def __str__(self):
         return f"Жалоба на {self.recipe}"
-
