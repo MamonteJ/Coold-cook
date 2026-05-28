@@ -1,0 +1,501 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$1200000$aF4RLlBlKPybqZzxBLX9iE$IJHCIqNerJJ52NcTO362qPTdmaStQz3+959GaOtYbi8=",
+      "last_login": null,
+      "is_superuser": true,
+      "username": "admin",
+      "first_name": "",
+      "last_name": "",
+      "email": "admin@example.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2026-05-26T12:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "recipes.category",
+    "pk": 1,
+    "fields": {
+      "title": "Горячие блюда",
+      "slug": "hot"
+    }
+  },
+  {
+    "model": "recipes.category",
+    "pk": 2,
+    "fields": {
+      "title": "Завтраки",
+      "slug": "breakfast"
+    }
+  },
+  {
+    "model": "recipes.category",
+    "pk": 3,
+    "fields": {
+      "title": "Десерты",
+      "slug": "desserts"
+    }
+  },
+  {
+    "model": "recipes.category",
+    "pk": 4,
+    "fields": {
+      "title": "Еда Valheim",
+      "slug": "valheim"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 1,
+    "fields": {
+      "name": "курица"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 2,
+    "fields": {
+      "name": "картофель"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 3,
+    "fields": {
+      "name": "сыр"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 4,
+    "fields": {
+      "name": "яйцо"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 5,
+    "fields": {
+      "name": "молоко"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 6,
+    "fields": {
+      "name": "морковь"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 7,
+    "fields": {
+      "name": "гриб"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 8,
+    "fields": {
+      "name": "кишки"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 9,
+    "fields": {
+      "name": "мясо кабана"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 10,
+    "fields": {
+      "name": "чертополох"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 11,
+    "fields": {
+      "name": "мясо локса"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 12,
+    "fields": {
+      "name": "морошка"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 13,
+    "fields": {
+      "name": "ячменная мука"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 14,
+    "fields": {
+      "name": "приготовленное мясо змея"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 15,
+    "fields": {
+      "name": "мед"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 16,
+    "fields": {
+      "name": "волчье мясо"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 17,
+    "fields": {
+      "name": "лук"
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 1,
+    "fields": {
+      "created_at": "2026-05-26T12:00:00Z",
+      "updated_at": "2026-05-26T12:00:00Z",
+      "title": "Курица с картофелем",
+      "slug": "chicken-potato",
+      "description": "Сытное блюдо из простых продуктов.",
+      "instructions": "Нарезать картофель. Добавить курицу и специи. Запекать 40 минут.",
+      "category": 1,
+      "author": 1,
+      "image": "",
+      "cooking_time": 50,
+      "portions": 3,
+      "difficulty": "easy",
+      "status": "published",
+      "rejection_reason": ""
+    }
+  },
+  {
+    "model": "recipes.recipeingredient",
+    "pk": 1,
+    "fields": {
+      "recipe": 1,
+      "ingredient": 1,
+      "amount_grams": 400,
+      "note": ""
+    }
+  },
+  {
+    "model": "recipes.recipeingredient",
+    "pk": 2,
+    "fields": {
+      "recipe": 1,
+      "ingredient": 2,
+      "amount_grams": 600,
+      "note": ""
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 2,
+    "fields": {
+      "created_at": "2026-05-26T12:00:00Z",
+      "updated_at": "2026-05-26T12:00:00Z",
+      "title": "Омлет с сыром",
+      "slug": "cheese-omelette",
+      "description": "Быстрый завтрак из яиц, молока и сыра.",
+      "instructions": "Взбейте яйца с молоком. Добавьте сыр. Готовьте на сковороде 7 минут.",
+      "category": 2,
+      "author": 1,
+      "image": "",
+      "cooking_time": 12,
+      "portions": 1,
+      "difficulty": "easy",
+      "status": "published",
+      "rejection_reason": ""
+    }
+  },
+  {
+    "model": "recipes.recipeingredient",
+    "pk": 3,
+    "fields": {
+      "recipe": 2,
+      "ingredient": 4,
+      "amount_grams": 120,
+      "note": ""
+    }
+  },
+  {
+    "model": "recipes.recipeingredient",
+    "pk": 4,
+    "fields": {
+      "recipe": 2,
+      "ingredient": 5,
+      "amount_grams": 50,
+      "note": ""
+    }
+  },
+  {
+    "model": "recipes.recipeingredient",
+    "pk": 5,
+    "fields": {
+      "recipe": 2,
+      "ingredient": 3,
+      "amount_grams": 60,
+      "note": ""
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 3,
+    "fields": {
+      "created_at": "2026-05-26T12:00:00Z",
+      "updated_at": "2026-05-26T12:00:00Z",
+      "title": "Морковный суп",
+      "slug": "valheim-carrot-soup",
+      "description": "Теплый суп из моркови и грибов. Один из первых полезных рецептов для запаса выносливости в Черном лесу.",
+      "instructions": "1. Соберите морковь и гриб.\n2. Поставьте котел над огнем.\n3. Смешайте ингредиенты в котле и приготовьте суп.",
+      "category": 4,
+      "author": 1,
+      "image": "recipes/valheim_carrot_soup.webp",
+      "cooking_time": 25,
+      "portions": 1,
+      "difficulty": "easy",
+      "status": "published",
+      "rejection_reason": ""
+    }
+  },
+  {
+    "model": "recipes.recipeingredient",
+    "pk": 6,
+    "fields": {
+      "recipe": 3,
+      "ingredient": 6,
+      "amount_grams": 3,
+      "note": ""
+    }
+  },
+  {
+    "model": "recipes.recipeingredient",
+    "pk": 7,
+    "fields": {
+      "recipe": 3,
+      "ingredient": 7,
+      "amount_grams": 1,
+      "note": ""
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 4,
+    "fields": {
+      "created_at": "2026-05-26T12:00:00Z",
+      "updated_at": "2026-05-26T12:00:00Z",
+      "title": "Колбаски",
+      "slug": "valheim-sausages",
+      "description": "Сытные копченые колбаски из болотного этапа игры. Хорошо подходят для увеличения здоровья.",
+      "instructions": "1. Подготовьте кишки, мясо кабана и чертополох.\n2. Используйте котел.\n3. Сварите смесь до готовых колбасок.",
+      "category": 4,
+      "author": 1,
+      "image": "recipes/valheim_sausages.webp",
+      "cooking_time": 25,
+      "portions": 1,
+      "difficulty": "medium",
+      "status": "published",
+      "rejection_reason": ""
+    }
+  },
+  {
+    "model": "recipes.recipeingredient",
+    "pk": 8,
+    "fields": {
+      "recipe": 4,
+      "ingredient": 8,
+      "amount_grams": 4,
+      "note": ""
+    }
+  },
+  {
+    "model": "recipes.recipeingredient",
+    "pk": 9,
+    "fields": {
+      "recipe": 4,
+      "ingredient": 9,
+      "amount_grams": 1,
+      "note": ""
+    }
+  },
+  {
+    "model": "recipes.recipeingredient",
+    "pk": 10,
+    "fields": {
+      "recipe": 4,
+      "ingredient": 10,
+      "amount_grams": 1,
+      "note": ""
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 5,
+    "fields": {
+      "created_at": "2026-05-26T12:00:00Z",
+      "updated_at": "2026-05-26T12:00:00Z",
+      "title": "Пирог из мяса локса",
+      "slug": "valheim-lox-meat-pie",
+      "description": "Мощное блюдо равнин, которое готовится из мяса локса, морошки и ячменной муки.",
+      "instructions": "1. Сделайте заготовку пирога из мяса локса, морошки и ячменной муки.\n2. Поместите пирог в каменную печь.\n3. Достаньте готовый пирог, пока он не сгорел.",
+      "category": 4,
+      "author": 1,
+      "image": "recipes/valheim_lox_meat_pie.webp",
+      "cooking_time": 50,
+      "portions": 1,
+      "difficulty": "hard",
+      "status": "published",
+      "rejection_reason": ""
+    }
+  },
+  {
+    "model": "recipes.recipeingredient",
+    "pk": 11,
+    "fields": {
+      "recipe": 5,
+      "ingredient": 11,
+      "amount_grams": 2,
+      "note": ""
+    }
+  },
+  {
+    "model": "recipes.recipeingredient",
+    "pk": 12,
+    "fields": {
+      "recipe": 5,
+      "ingredient": 12,
+      "amount_grams": 2,
+      "note": ""
+    }
+  },
+  {
+    "model": "recipes.recipeingredient",
+    "pk": 13,
+    "fields": {
+      "recipe": 5,
+      "ingredient": 13,
+      "amount_grams": 4,
+      "note": ""
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 6,
+    "fields": {
+      "created_at": "2026-05-26T12:00:00Z",
+      "updated_at": "2026-05-26T12:00:00Z",
+      "title": "Похлебка из змея",
+      "slug": "valheim-serpent-stew",
+      "description": "Дорогая морская похлебка с медом и мясом морского змея. Отлично повышает здоровье.",
+      "instructions": "1. Добудьте и приготовьте мясо морского змея.\n2. Добавьте гриб и мед.\n3. Приготовьте похлебку в улучшенном котле.",
+      "category": 4,
+      "author": 1,
+      "image": "recipes/valheim_serpent_stew.webp",
+      "cooking_time": 30,
+      "portions": 1,
+      "difficulty": "hard",
+      "status": "published",
+      "rejection_reason": ""
+    }
+  },
+  {
+    "model": "recipes.recipeingredient",
+    "pk": 14,
+    "fields": {
+      "recipe": 6,
+      "ingredient": 14,
+      "amount_grams": 1,
+      "note": ""
+    }
+  },
+  {
+    "model": "recipes.recipeingredient",
+    "pk": 15,
+    "fields": {
+      "recipe": 6,
+      "ingredient": 7,
+      "amount_grams": 1,
+      "note": ""
+    }
+  },
+  {
+    "model": "recipes.recipeingredient",
+    "pk": 16,
+    "fields": {
+      "recipe": 6,
+      "ingredient": 15,
+      "amount_grams": 2,
+      "note": ""
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 7,
+    "fields": {
+      "created_at": "2026-05-26T12:00:00Z",
+      "updated_at": "2026-05-26T12:00:00Z",
+      "title": "Волчий шашлык",
+      "slug": "valheim-wolf-skewer",
+      "description": "Горное мясное блюдо из волчьего мяса, грибов и лука. Хороший выбор для походов в горы.",
+      "instructions": "1. Подготовьте волчье мясо, грибы и лук.\n2. Улучшите котел до нужного уровня.\n3. Соберите ингредиенты в котле и приготовьте шашлык.",
+      "category": 4,
+      "author": 1,
+      "image": "recipes/valheim_wolf_skewer.webp",
+      "cooking_time": 25,
+      "portions": 1,
+      "difficulty": "medium",
+      "status": "published",
+      "rejection_reason": ""
+    }
+  },
+  {
+    "model": "recipes.recipeingredient",
+    "pk": 17,
+    "fields": {
+      "recipe": 7,
+      "ingredient": 16,
+      "amount_grams": 1,
+      "note": ""
+    }
+  },
+  {
+    "model": "recipes.recipeingredient",
+    "pk": 18,
+    "fields": {
+      "recipe": 7,
+      "ingredient": 7,
+      "amount_grams": 2,
+      "note": ""
+    }
+  },
+  {
+    "model": "recipes.recipeingredient",
+    "pk": 19,
+    "fields": {
+      "recipe": 7,
+      "ingredient": 17,
+      "amount_grams": 1,
+      "note": ""
+    }
+  }
+]

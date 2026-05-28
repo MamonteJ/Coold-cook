@@ -1,0 +1,890 @@
+:root {
+  --bg: #080b0d;
+  --bg-soft: #111820;
+  --wood: #2a1710;
+  --wood-light: #5d331c;
+  --iron: #29333a;
+  --iron-light: #58656b;
+  --ember: #ff8a2b;
+  --ember-bright: #ffd28a;
+  --gold: #c99854;
+  --text: #f5e6cf;
+  --muted: #bfae95;
+  --danger: #d05d3f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 50% 12%, #7b321d80 0, transparent 26rem),
+    radial-gradient(circle at 78% 18%, #d4772b38 0, transparent 20rem),
+    radial-gradient(circle at 20% 70%, #23404d70 0, transparent 24rem),
+    linear-gradient(135deg, #06080a 0%, #111820 46%, #21130d 100%);
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  content: "";
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #ffffff05 0,
+      #ffffff05 1px,
+      transparent 1px,
+      transparent 96px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      #00000000 0,
+      #00000000 44px,
+      #0000003d 45px,
+      #00000000 47px
+    );
+  opacity: 0.7;
+}
+
+body::after {
+  content: "";
+  display: none;
+}
+
+.valheim-sky {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.rune-mist {
+  position: absolute;
+  color: #ffcf8c26;
+  font-size: 120px;
+  font-weight: 700;
+  text-shadow: 0 0 28px #ff8a2b40;
+  animation: rune-pulse 9s ease-in-out infinite;
+}
+
+.rune-one {
+  left: 7vw;
+  top: 24vh;
+}
+
+.rune-two {
+  right: 10vw;
+  top: 18vh;
+  animation-delay: -3s;
+}
+
+.rune-three {
+  left: 44vw;
+  bottom: 8vh;
+  animation-delay: -6s;
+}
+
+.rune-stone {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 84px;
+  height: 176px;
+  color: #ff765c8a;
+  background:
+    radial-gradient(circle at 48% 28%, #9fb7bd36, transparent 35%),
+    linear-gradient(110deg, #5d7073 0%, #2d3c42 42%, #121b20 100%);
+  border: 1px solid #9fb7bd40;
+  border-radius: 46% 54% 18% 18% / 14% 16% 8% 8%;
+  box-shadow:
+    0 22px 38px #00000080,
+    inset 10px 0 20px #ffffff12,
+    inset -14px -10px 28px #00000090;
+  font-size: 28px;
+  line-height: 1.25;
+  opacity: 0.34;
+  transform: rotate(-7deg);
+  filter: drop-shadow(0 0 14px #92d3e230);
+}
+
+.rune-stone::before {
+  position: absolute;
+  inset: 12px 16px;
+  content: "";
+  border: 2px solid #ff765c40;
+  border-radius: 46% 54% 16% 16%;
+  box-shadow: inset 0 0 18px #ff765c22;
+}
+
+.rune-stone b {
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 0 12px #ff543f;
+}
+
+.stone-left {
+  left: 3vw;
+  bottom: 8vh;
+}
+
+.stone-right {
+  right: 3vw;
+  top: 24vh;
+  height: 214px;
+  transform: rotate(8deg);
+}
+
+.photo-prop {
+  position: absolute;
+  display: block;
+  background-image: var(--prop-image);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  filter: drop-shadow(0 24px 30px #000000a0);
+  opacity: 0.42;
+}
+
+.photo-prop i {
+  position: absolute;
+  left: 50%;
+  bottom: 8px;
+  z-index: -1;
+  display: none;
+  width: 118px;
+  height: 46px;
+  content: "";
+  background:
+    radial-gradient(ellipse at 50% 60%, #ffd28a75 0 18%, transparent 19%),
+    radial-gradient(ellipse at 50% 62%, #ff8a2b8a 0 46%, transparent 47%),
+    radial-gradient(ellipse at 50% 70%, #ff8a2b42 0 70%, transparent 71%);
+  filter: blur(6px);
+  transform: translateX(-50%);
+  animation: cauldron-glow 2.4s ease-in-out infinite;
+}
+
+.rack-photo {
+  --prop-image: url("../img/props/cooking-rack.png");
+  left: 4vw;
+  top: 18vh;
+  width: 270px;
+  height: 210px;
+}
+
+.rack-photo i {
+  display: none;
+}
+
+.cauldron-photo {
+  --prop-image: url("../img/props/cauldron.png");
+  right: 3vw;
+  bottom: 9vh;
+  width: 190px;
+  height: 250px;
+}
+
+.cauldron-photo i {
+  bottom: 22px;
+  display: block;
+}
+
+.barrel-photo {
+  --prop-image: url("../img/props/barrel.png");
+  right: 18vw;
+  bottom: 4vh;
+  width: 92px;
+  height: 122px;
+  opacity: 0.25;
+}
+
+.flying-ingredient {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  color: #ffe2ad;
+  background:
+    radial-gradient(circle at 50% 55%, #ff8a2b45, transparent 52%),
+    #0f161aa6;
+  border: 1px solid #d8a35f5c;
+  border-radius: 50%;
+  box-shadow: 0 0 20px #ff8a2b35, inset 0 0 12px #000000b0;
+  font-size: 25px;
+  opacity: 0;
+  filter: sepia(0.25) saturate(1.1);
+  animation: ingredient-fly 34s linear infinite;
+}
+
+.ing-mushroom {
+  left: -8vw;
+  top: 31vh;
+  animation-delay: -4s;
+}
+
+.ing-carrot {
+  left: -10vw;
+  top: 68vh;
+  animation-delay: -17s;
+  animation-duration: 42s;
+}
+
+.ing-fish {
+  left: -12vw;
+  top: 45vh;
+  animation-delay: -27s;
+  animation-duration: 48s;
+}
+
+.ing-meat {
+  left: -9vw;
+  top: 20vh;
+  animation-delay: -35s;
+  animation-duration: 54s;
+}
+
+.photo-orb {
+  position: absolute;
+  left: -12vw;
+  display: block;
+  width: 74px;
+  height: 74px;
+  overflow: hidden;
+  background:
+    var(--orb-image),
+    radial-gradient(circle at 50% 45%, #45311f 0 42%, #101820 72%);
+  background-position: center;
+  background-size: cover;
+  border: 1px solid #ffd28a80;
+  border-radius: 50%;
+  box-shadow:
+    0 0 24px #ff8a2b45,
+    0 10px 24px #00000080,
+    inset 0 0 0 3px #0a0d10b8,
+    inset 0 0 16px #ffd28a38;
+  opacity: 0;
+  animation: photo-orb-fly 46s linear infinite;
+}
+
+.photo-orb::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background:
+    radial-gradient(circle at 30% 22%, #ffffff9e 0 7%, transparent 8%),
+    radial-gradient(circle at 50% 50%, transparent 0 54%, #00000078 100%);
+  border-radius: inherit;
+}
+
+.orb-feast {
+  --orb-image: url("../img/flying/feast.png");
+  top: 16vh;
+  width: 96px;
+  height: 96px;
+  animation-delay: -6s;
+  animation-duration: 58s;
+}
+
+.orb-chicken {
+  --orb-image: url("../img/flying/chicken.png");
+  top: 36vh;
+  animation-delay: -28s;
+}
+
+.orb-carrot {
+  --orb-image: url("../img/flying/carrot.png");
+  top: 64vh;
+  animation-delay: -14s;
+  animation-duration: 52s;
+}
+
+.orb-crystal {
+  --orb-image: url("../img/flying/crystal.png");
+  top: 24vh;
+  animation-delay: -39s;
+  animation-duration: 64s;
+}
+
+.orb-board {
+  --orb-image: url("../img/flying/board.png");
+  top: 76vh;
+  animation-delay: -47s;
+  animation-duration: 70s;
+}
+
+.orb-potion {
+  --orb-image: url("../img/flying/potion.png");
+  top: 10vh;
+  width: 86px;
+  height: 86px;
+  animation-delay: -31s;
+  animation-duration: 62s;
+}
+
+.orb-candle {
+  --orb-image: url("../img/flying/candle.png");
+  top: 30vh;
+  width: 58px;
+  height: 58px;
+  animation-delay: -11s;
+  animation-duration: 44s;
+}
+
+.orb-stew {
+  --orb-image: url("../img/flying/stew.png");
+  top: 52vh;
+  width: 66px;
+  height: 66px;
+  animation-delay: -36s;
+  animation-duration: 56s;
+}
+
+.orb-cheese {
+  --orb-image: url("../img/flying/cheese.png");
+  top: 72vh;
+  width: 72px;
+  height: 72px;
+  animation-delay: -22s;
+  animation-duration: 50s;
+}
+
+.orb-skewer {
+  --orb-image: url("../img/flying/skewer.png");
+  top: 41vh;
+  width: 92px;
+  height: 58px;
+  animation-delay: -49s;
+  animation-duration: 68s;
+}
+
+.orb-porridge {
+  --orb-image: url("../img/flying/porridge.png");
+  top: 83vh;
+  width: 64px;
+  height: 64px;
+  animation-delay: -5s;
+  animation-duration: 60s;
+}
+
+.orb-onion {
+  --orb-image: url("../img/flying/onion.png");
+  top: 21vh;
+  width: 62px;
+  height: 62px;
+  animation-delay: -55s;
+  animation-duration: 72s;
+}
+
+.orb-cake {
+  --orb-image: url("../img/flying/cake.png");
+  top: 61vh;
+  width: 70px;
+  height: 70px;
+  animation-delay: -42s;
+  animation-duration: 66s;
+}
+
+.spark {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background: #ffd28a;
+  border-radius: 50%;
+  box-shadow: 0 0 14px #ff8a2b, 0 0 30px #ff8a2b;
+  opacity: 0;
+  animation: ember-rise 8s ease-in infinite;
+}
+
+.spark-one {
+  left: 18vw;
+  bottom: -4vh;
+}
+
+.spark-two {
+  left: 42vw;
+  bottom: -6vh;
+  animation-delay: -2s;
+}
+
+.spark-three {
+  left: 70vw;
+  bottom: -5vh;
+  animation-delay: -4s;
+}
+
+.spark-four {
+  left: 84vw;
+  bottom: -7vh;
+  animation-delay: -6s;
+}
+
+a {
+  color: var(--ember-bright);
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  gap: 24px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 32px;
+  color: var(--text);
+  background:
+    linear-gradient(180deg, #311b12 0%, #171014 100%),
+    repeating-linear-gradient(90deg, #3d2315 0 34px, #26140d 34px 68px);
+  border-bottom: 1px solid #d28b3f80;
+  box-shadow: 0 10px 28px #00000080, inset 0 -1px 0 #000;
+}
+
+.site-header a,
+.site-header button {
+  color: var(--text);
+}
+
+.brand {
+  position: relative;
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  text-shadow: 0 0 18px #ff8a2b99;
+}
+
+.brand-logo {
+  width: 42px;
+  height: 42px;
+  background-image: url("../img/logo/brand.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  filter:
+    drop-shadow(0 0 10px #2daeff9c)
+    drop-shadow(0 0 18px #000);
+  flex: 0 0 auto;
+}
+
+nav {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+nav a {
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  border-color: #d28b3f70;
+  background: #ffffff0c;
+}
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 34px 20px 56px;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 22px;
+  min-height: 170px;
+  padding: 34px 250px 34px 34px;
+  background:
+    radial-gradient(circle at 18% 95%, #ff8a2b70 0, transparent 13rem),
+    linear-gradient(135deg, #26140de6, #101820e8),
+    repeating-linear-gradient(90deg, #3a2115 0 50px, #24140d 50px 100px);
+  border: 1px solid #d28b3f7a;
+  border-radius: 22px;
+  box-shadow: 0 22px 46px #0000008a, inset 0 0 40px #00000075;
+}
+
+.hero::before {
+  content: "";
+  display: none;
+}
+
+.hero::after {
+  content: "";
+  display: none;
+}
+
+.hero h1,
+.hero p {
+  position: relative;
+  z-index: 1;
+}
+
+.catalog-hero-photo {
+  position: absolute;
+  right: 26px;
+  bottom: 0;
+  width: 185px;
+  height: 160px;
+  background-image: url("../img/hero/catalog-mask.png");
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: contain;
+  filter: drop-shadow(0 0 20px #8fc3ff55) drop-shadow(0 12px 22px #000);
+  opacity: 0.92;
+}
+
+.catalog-hero-photo::before {
+  position: absolute;
+  inset: auto 12px 4px;
+  height: 42px;
+  content: "";
+  background: radial-gradient(ellipse at center, #7fb7ff40 0, transparent 70%);
+  filter: blur(8px);
+}
+
+h1,
+h2,
+h3 {
+  color: #ffe2ad;
+  text-shadow: 0 2px 0 #000, 0 0 18px #ff8a2b30;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 18px;
+  padding: 20px;
+  background:
+    linear-gradient(145deg, #1a2429f2, #150e0bf2),
+    repeating-linear-gradient(90deg, #2f1a10 0 38px, #21120c 38px 76px);
+  border: 1px solid #b77a3d8c;
+  border-radius: 16px;
+  box-shadow:
+    0 16px 36px #00000082,
+    inset 0 1px 0 #ffffff12,
+    inset 0 0 26px #00000070;
+}
+
+.card::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background:
+    radial-gradient(circle at 15% 0%, #ff9a3b24 0, transparent 8rem),
+    linear-gradient(90deg, transparent, #ffffff08, transparent);
+}
+
+.recipe-card {
+  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.recipe-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--ember-bright);
+  box-shadow: 0 20px 42px #00000095, 0 0 26px #ff8a2b2e;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.filters,
+.form-card {
+  display: grid;
+  gap: 12px;
+}
+
+label {
+  color: #f1d19b;
+  font-weight: 700;
+}
+
+input,
+select,
+textarea,
+button,
+.button {
+  width: 100%;
+  border: 1px solid #7f684f;
+  border-radius: 10px;
+  padding: 11px 13px;
+  color: var(--text);
+  background: #0d1418;
+  font: inherit;
+  box-shadow: inset 0 2px 8px #0000009e;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--ember-bright);
+  outline: none;
+  box-shadow: 0 0 0 3px #ff8a2b30, inset 0 2px 8px #0000009e;
+}
+
+button,
+.button,
+.primary {
+  width: auto;
+  min-width: 120px;
+  color: #1b1008;
+  cursor: pointer;
+  background:
+    linear-gradient(180deg, #ffd28a 0%, #c98236 52%, #7d3f1b 100%);
+  border-color: #f1bd70;
+  box-shadow: 0 6px 14px #00000070, inset 0 1px 0 #fff0bc;
+  font-weight: 700;
+  text-decoration: none;
+  text-shadow: 0 1px 0 #ffe4ae;
+}
+
+button:hover,
+.button:hover,
+.primary:hover {
+  filter: brightness(1.1);
+}
+
+.danger {
+  color: #fff2e8;
+  background:
+    linear-gradient(180deg, #d05d3f 0%, #8d2c1d 58%, #45130d 100%);
+  border-color: #ff9a73;
+  text-shadow: 0 1px 0 #3b0d08;
+}
+
+.small {
+  min-width: 82px;
+  padding: 7px 10px;
+  font-size: 14px;
+}
+
+.inline {
+  display: inline-block;
+  margin: 4px 6px 4px 0;
+}
+
+.inline button {
+  width: auto;
+}
+
+.message {
+  margin-bottom: 16px;
+  padding: 13px 15px;
+  color: #ffe5bc;
+  background: linear-gradient(135deg, #1d2a20, #3a2412);
+  border: 1px solid #d99a58a3;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px #00000060;
+}
+
+.meta {
+  color: var(--muted);
+}
+
+.recipe-card-image,
+.recipe-detail-image {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  background:
+    radial-gradient(circle at 50% 42%, #ff8a2b45 0, transparent 42%),
+    linear-gradient(135deg, #1a2429, #2a1710);
+  border: 1px solid #d8a35f6b;
+  box-shadow: inset 0 0 28px #00000080, 0 10px 24px #00000070;
+}
+
+.recipe-card-image {
+  height: 150px;
+  margin-bottom: 14px;
+  border-radius: 13px;
+}
+
+.recipe-detail-image {
+  max-height: 380px;
+  margin-bottom: 20px;
+  border-radius: 16px;
+}
+
+.recipe-image-placeholder {
+  display: grid;
+  place-items: center;
+  color: #c9b698;
+  font-weight: 700;
+  text-shadow: 0 2px 0 #000;
+}
+
+.comment-row,
+.moderation-row {
+  padding: 10px 0;
+  border-bottom: 1px solid #ffffff12;
+}
+
+.comment-row:last-child,
+.moderation-row:last-child {
+  border-bottom: 0;
+}
+
+.preline {
+  white-space: pre-line;
+}
+
+ul {
+  padding-left: 22px;
+}
+
+li::marker {
+  color: var(--ember);
+}
+
+@keyframes cauldron-glow {
+  0%,
+  100% {
+    opacity: 0.48;
+    transform: translateX(-50%) scale(0.96);
+  }
+
+  50% {
+    opacity: 0.78;
+    transform: translateX(-50%) scale(1.08);
+  }
+}
+
+@keyframes ingredient-fly {
+  0% {
+    opacity: 0;
+    transform: translate3d(-8vw, 0, 0) rotate(-18deg) scale(0.85);
+  }
+
+  8% {
+    opacity: 0.42;
+  }
+
+  50% {
+    opacity: 0.34;
+    transform: translate3d(58vw, -4vh, 0) rotate(18deg) scale(1);
+  }
+
+  92% {
+    opacity: 0.38;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(118vw, 3vh, 0) rotate(42deg) scale(0.9);
+  }
+}
+
+@keyframes photo-orb-fly {
+  0% {
+    opacity: 0;
+    transform: translate3d(-10vw, 0, 0) rotate(-12deg) scale(0.86);
+  }
+
+  7% {
+    opacity: 0.5;
+  }
+
+  38% {
+    opacity: 0.44;
+    transform: translate3d(45vw, -5vh, 0) rotate(10deg) scale(1);
+  }
+
+  76% {
+    opacity: 0.48;
+    transform: translate3d(92vw, 3vh, 0) rotate(-7deg) scale(0.94);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(122vw, -2vh, 0) rotate(18deg) scale(0.86);
+  }
+}
+
+@keyframes ember-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.6);
+  }
+
+  20% {
+    opacity: 0.9;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-105vh) translateX(9vw) scale(1.4);
+  }
+}
+
+@keyframes rune-pulse {
+  0%,
+  100% {
+    opacity: 0.16;
+    transform: scale(0.95);
+  }
+
+  50% {
+    opacity: 0.34;
+    transform: scale(1.06);
+  }
+}
+
+@media (max-width: 720px) {
+  .site-header {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 16px 20px;
+  }
+
+  .hero {
+    min-height: 150px;
+    padding: 24px 130px 24px 24px;
+  }
+
+  .photo-prop,
+  .flying-ingredient,
+  .photo-orb {
+    opacity: 0.18;
+    transform: scale(0.72);
+  }
+
+  .rune-mist {
+    font-size: 82px;
+  }
+
+  .rune-stone {
+    opacity: 0.2;
+    transform: scale(0.72);
+  }
+
+  .catalog-hero-photo {
+    right: 8px;
+    width: 110px;
+    height: 130px;
+    opacity: 0.78;
+  }
+}
