@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Добавить рецепт{% endblock %}
+{% block content %}
+<h1>Добавить рецепт</h1>
+<form method="post" enctype="multipart/form-data" class="card form-card">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="primary">Отправить на проверку</button>
+</form>
+{% endblock %}

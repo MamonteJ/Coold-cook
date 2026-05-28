@@ -1,0 +1,66 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Кулинарный помощник{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+<div class="valheim-sky" aria-hidden="true">
+  <span class="rune-mist rune-one">ᚠ</span>
+  <span class="rune-mist rune-two">ᚱ</span>
+  <span class="rune-mist rune-three">ᛟ</span>
+  <span class="rune-stone stone-left"><b>ᚠ<br>ᚱ<br>ᛟ</b></span>
+  <span class="rune-stone stone-right"><b>ᛒ<br>ᛉ<br>ᛟ</b></span>
+  <span class="photo-prop rack-photo"><i></i></span>
+  <span class="photo-prop cauldron-photo"><i></i></span>
+  <span class="photo-prop barrel-photo"></span>
+  <span class="flying-ingredient ing-mushroom">🍄</span>
+  <span class="flying-ingredient ing-carrot">🥕</span>
+  <span class="flying-ingredient ing-fish">🐟</span>
+  <span class="flying-ingredient ing-meat">🥩</span>
+  <span class="photo-orb orb-feast"></span>
+  <span class="photo-orb orb-chicken"></span>
+  <span class="photo-orb orb-carrot"></span>
+  <span class="photo-orb orb-crystal"></span>
+  <span class="photo-orb orb-board"></span>
+  <span class="photo-orb orb-potion"></span>
+  <span class="photo-orb orb-candle"></span>
+  <span class="photo-orb orb-stew"></span>
+  <span class="photo-orb orb-cheese"></span>
+  <span class="photo-orb orb-skewer"></span>
+  <span class="photo-orb orb-porridge"></span>
+  <span class="photo-orb orb-onion"></span>
+  <span class="photo-orb orb-cake"></span>
+  <span class="spark spark-one"></span>
+  <span class="spark spark-two"></span>
+  <span class="spark spark-three"></span>
+  <span class="spark spark-four"></span>
+</div>
+<header class="site-header">
+  <a class="brand" href="{% url 'recipe_list' %}">
+    <span class="brand-logo" aria-hidden="true"></span>
+    Кулинарный помощник
+  </a>
+  <nav>
+    <a href="{% url 'assistant' %}">Подбор по продуктам</a>
+    <a href="{% url 'random_recipe' %}">Случайное блюдо</a>
+    {% if user.is_authenticated %}
+      <a href="{% url 'recipe_create' %}">Добавить рецепт</a>
+      <a href="{% url 'profile' %}">Профиль</a>
+      {% if user.is_staff %}<a href="{% url 'moderation_queue' %}">Модерация</a>{% endif %}
+      <form class="inline" method="post" action="{% url 'logout' %}">{% csrf_token %}<button>Выйти</button></form>
+    {% else %}
+      <a href="{% url 'login' %}">Войти</a>
+      <a href="{% url 'signup' %}">Регистрация</a>
+    {% endif %}
+  </nav>
+</header>
+<main class="container">
+  {% for message in messages %}<div class="message">{{ message }}</div>{% endfor %}
+  {% block content %}{% endblock %}
+</main>
+</body>
+</html>

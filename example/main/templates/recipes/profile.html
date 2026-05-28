@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Профиль{% endblock %}
+{% block content %}
+<h1>Личный кабинет</h1>
+<section class="columns">
+  <div class="card">
+    <h2>Мои рецепты</h2>
+    {% for recipe in my_recipes %}<p>{{ recipe.title }} - {{ recipe.get_status_display }}</p>{% empty %}<p>Рецептов пока нет.</p>{% endfor %}
+  </div>
+  <div class="card">
+    <h2>Избранное</h2>
+    {% for favorite in favorites %}<p><a href="{{ favorite.recipe.get_absolute_url }}">{{ favorite.recipe.title }}</a></p>{% empty %}<p>Пусто.</p>{% endfor %}
+  </div>
+</section>
+{% endblock %}

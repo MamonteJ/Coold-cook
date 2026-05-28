@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}{{ recipe.title }}{% endblock %}
+{% block content %}
+<article class="card detail">
+  {% if recipe.image %}
+    <img class="recipe-detail-image" src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
+  {% else %}
+    <div class="recipe-detail-image recipe-image-placeholder">Нет изображения</div>
+  {% endif %}
+  <h1>{{ recipe.title }}</h1>
+  <p class="meta">{{ recipe.category }} · {{ recipe.cooking_time }} мин · {{ recipe.portions }} порц. · рейтинг {{ recipe.average_rating }}</p>
+  <p>{{ recipe.description }}</p>
+  <h2>Ингредиенты</h2>
+  <ul>
+    {% for link in recipe.ingredient_links.all %}
+      <li>{{ link.ingredient.name }}{% if link.amount_grams %} - {{ link.amount_grams }} г{% endif %}</li>
+    {% endfor %}
+  </ul>
+  <h2>Приготовление</h2>
+  <p class="preline">{{ recipe.instructions }}</p>
+  {% if user.is_authenticated %}
+    <form method="post" action="{% url 'toggle_favorite' recipe.slug %}" class="inline">{% csrf_token %}<button>{% if is_favorite %}Убрать из избранного{% else %}Добавить в избранное{% endif %}</button></form>
+    <a class="button" href="{% url 'report_recipe' recipe.slug %}">Пожаловаться</a>
+  {% endif %}
+  {% if user.is_staff %}
+    <form method="post" action="{% url 'delete_recipe' recipe.id %}" class="inline">{% csrf_token %}<button class="danger">Удалить рецепт</button></form>
+  {% endif %}
+</article>
+<section class="columns">
+  <div class="card">
+    <h2>Комментарии</h2>
+    {% for comment in recipe.comments.all %}
+      {% if comment.is_visible %}
+        <div class="comment-row">
+          <p><b>{{ comment.author }}</b>: {{ comment.text }}</p>
+          {% if user.is_staff %}
+            <form method="post" action="{% url 'delete_comment' comment.id %}" class="inline">{% csrf_token %}<button class="danger small">Удалить</button></form>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% empty %}<p>Комментариев пока нет.</p>{% endfor %}
+    {% if user.is_authenticated %}
+      <form method="post">{% csrf_token %}{{ comment_form.as_p }}<button name="comment">Отправить</button></form>
+    {% endif %}
+  </div>
+  <div class="card">
+    <h2>Оценка</h2>
+    {% if user.is_authenticated %}
+      <form method="post">{% csrf_token %}{{ rating_form.as_p }}<button name="rating">Оценить</button></form>
+    {% else %}
+      <p>Войдите, чтобы оценивать рецепты.</p>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

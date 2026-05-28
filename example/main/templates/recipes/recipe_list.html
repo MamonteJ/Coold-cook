@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Каталог рецептов{% endblock %}
+{% block content %}
+<section class="hero">
+  <h1>Каталог рецептов</h1>
+  <p>Ищите блюда по названию, ингредиентам, категории и сложности.</p>
+  <span class="catalog-hero-photo" aria-hidden="true"></span>
+</section>
+<form method="get" class="filters card">
+  <input name="q" placeholder="Поиск" value="{{ request.GET.q }}">
+  <select name="category">
+    <option value="">Все категории</option>
+    {% for category in categories %}
+      <option value="{{ category.id }}" {% if request.GET.category == category.id|stringformat:'s' %}selected{% endif %}>{{ category.title }}</option>
+    {% endfor %}
+  </select>
+  <select name="difficulty">
+    <option value="">Любая сложность</option>
+    {% for value, label in difficulties %}
+      <option value="{{ value }}" {% if request.GET.difficulty == value %}selected{% endif %}>{{ label }}</option>
+    {% endfor %}
+  </select>
+  <select name="sort">
+    <option value="new">Сначала новые</option>
+    <option value="rating" {% if request.GET.sort == "rating" %}selected{% endif %}>По рейтингу</option>
+    <option value="time" {% if request.GET.sort == "time" %}selected{% endif %}>Быстрые</option>
+  </select>
+  <button>Найти</button>
+</form>
+<div class="grid">
+  {% for recipe in recipes %}
+    <article class="card recipe-card">
+      {% if recipe.image %}
+        <img class="recipe-card-image" src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
+      {% else %}
+        <div class="recipe-card-image recipe-image-placeholder">Нет изображения</div>
+      {% endif %}
+      <h2><a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a></h2>
+      <p>{{ recipe.description|truncatewords:24 }}</p>
+      <p class="meta">{{ recipe.category }} · {{ recipe.cooking_time }} мин · рейтинг {{ recipe.average_rating }}</p>
+    </article>
+  {% empty %}
+    <p>Рецепты не найдены.</p>
+  {% endfor %}
+</div>
+{% endblock %}
