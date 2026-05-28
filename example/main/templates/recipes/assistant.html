@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Подбор по продуктам{% endblock %}
+{% block content %}
+<h1>Подбор рецептов по продуктам</h1>
+<form method="post" class="card form-card">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="primary">Подобрать рецепты</button>
+</form>
+{% if matches %}
+  <h2>Подходящие рецепты</h2>
+  <div class="grid">
+  {% for match in matches %}
+    <article class="card recipe-card">
+      <h3><a href="{{ match.recipe.get_absolute_url }}">{{ match.recipe.title }}</a></h3>
+      <p>Совпадение: {{ match.percent }}% ({{ match.matched_count }}/{{ match.total_count }})</p>
+      {% if match.missing %}
+        <p><b>Не хватает:</b>
+        {% for item in match.missing %}{{ item.ingredient.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+      {% else %}
+        <p>Все ингредиенты есть.</p>
+      {% endif %}
+    </article>
+  {% endfor %}
+  </div>
+{% endif %}
+{% endblock %}

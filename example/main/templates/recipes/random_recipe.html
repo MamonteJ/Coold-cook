@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Случайное блюдо{% endblock %}
+{% block content %}
+<h1>Случайное блюдо</h1>
+<form method="post" class="card form-card">
+  {% csrf_token %}
+  <p>Оставьте поле пустым и обновите страницу, чтобы получить случайный рецепт из всей базы.</p>
+  {{ form.as_p }}
+  <button class="primary">Выбрать по моим продуктам</button>
+</form>
+{% if recipe %}
+  <article class="card">
+    <h2><a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a></h2>
+    <p>{{ recipe.description }}</p>
+  </article>
+{% else %}
+  <p>Подходящее блюдо пока не найдено.</p>
+{% endif %}
+{% endblock %}
