@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Модерация{% endblock %}
+{% block content %}
+<h1>Модерация рецептов</h1>
+<div class="card">
+  <h2>Статистика</h2>
+  {% for row in stats %}<p>{{ row.status }}: {{ row.total }}</p>{% endfor %}
+</div>
+{% for recipe in recipes %}
+  <article class="card">
+    <h2>{{ recipe.title }}</h2>
+    <p>{{ recipe.description }}</p>
+    <p>Автор: {{ recipe.author }} · Категория: {{ recipe.category }}</p>
+    <form method="post" action="{% url 'moderate_recipe' recipe.id 'approve' %}" class="inline">{% csrf_token %}<button>Одобрить</button></form>
+    <form method="post" action="{% url 'moderate_recipe' recipe.id 'reject' %}">
+      {% csrf_token %}
+      <input name="reason" placeholder="Причина отклонения">
+      <button>Отклонить</button>
+    </form>
+    <form method="post" action="{% url 'delete_recipe' recipe.id %}" class="inline">{% csrf_token %}<button class="danger">Удалить рецепт</button></form>
+  </article>
+{% empty %}<p>Очередь пуста.</p>{% endfor %}
+<section class="columns">
+  <div class="card">
+    <h2>Все рецепты</h2>
+    {% for recipe in all_recipes %}
+      <div class="moderation-row">
+        <p><b>{{ recipe.title }}</b> — {{ recipe.get_status_display }}</p>
+        <form method="post" action="{% url 'delete_recipe' recipe.id %}" class="inline">{% csrf_token %}<button class="danger small">Удалить</button></form>
+      </div>
+    {% empty %}<p>Рецептов пока нет.</p>{% endfor %}
+  </div>
+  <div class="card">
+    <h2>Комментарии</h2>
+    {% for comment in comments %}
+      <div class="moderation-row">
+        <p><b>{{ comment.author }}</b> к «{{ comment.recipe.title }}»: {{ comment.text }}</p>
+        <form method="post" action="{% url 'delete_comment' comment.id %}" class="inline">{% csrf_token %}<button class="danger small">Удалить</button></form>
+      </div>
+    {% empty %}<p>Комментариев пока нет.</p>{% endfor %}
+  </div>
+</section>
+{% endblock %}

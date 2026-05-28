@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Жалоба{% endblock %}
+{% block content %}
+<h1>Жалоба на рецепт "{{ recipe.title }}"</h1>
+<form method="post" class="card form-card">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="primary">Отправить</button>
+</form>
+{% endblock %}
