@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+db.sqlite3
+media/*
+!media/
+!media/recipes/
+!media/recipes/*.webp
+.env
+.pytest_cache/
+.idea/
