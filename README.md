@@ -33,3 +33,5 @@ py manage.py runserver
 py manage.py test
 py -m flake8 .
 ```
+Логическая резервная копия базы данных хранится в \docs :
+    [schema_backup.sql](docs/schema_backup.sql)
